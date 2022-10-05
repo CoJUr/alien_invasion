@@ -2,8 +2,7 @@
 import sys
 import pygame
 from settings import Settings
-from ship import Ship
-
+from game_character import Pikachu
 
 class BlueSky:
     """A class to manage the blue sky game"""
@@ -14,13 +13,15 @@ class BlueSky:
         self.settings = Settings()
 
         self.screen = pygame.display.set_mode(
-                                            (self.settings.screen_width,
-                                             self.settings.screen_height))
+            (self.settings.screen_width,
+             self.settings.screen_height))
 
         pygame.display.set_caption("Blue Sky")
 
+        self.pika = Pikachu(self)
+
         # set the background color to blue
-        self.bg_color = (0, 50, 135)
+        self.bg_color = (220, 30, 0)
 
     def run_game(self):
         """Start the main loop for the game"""
@@ -28,18 +29,16 @@ class BlueSky:
             self._check_events()
             self._update_screen()
 
-
     def _check_events(self):
         """Listen for key presses and mouse events"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
 
-
     def _update_screen(self):
         """Refactor to re-home the code for updating the screen"""
         self.screen.fill(self.bg_color)
-
+        self.pika.blitme()
         # make the most recently drawn screen visible, illusory movement
         pygame.display.flip()
 
