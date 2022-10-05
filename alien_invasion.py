@@ -14,7 +14,8 @@ class AlienInvasion:
         self.settings = Settings()
 
         self.screen = pygame.display.set_mode(
-            (self.settings.screen_width, self.settings.screen_height))  # surface
+            (self.settings.screen_width,
+             self.settings.screen_height))  # surface
         pygame.display.set_caption("Alien Invasion")
 
         self.ship = Ship(self)
@@ -26,16 +27,24 @@ class AlienInvasion:
         """Start the main loop for the game."""
         while True:
             # listen for key and mouse events (event loop)
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
+            self._check_events()  # helper method (event loop)
 
             # redraw the screen during each pass through the loop
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()  # draw the ship on the background
+            self._update_screen()  # helper method refactor part 2
 
-            # make the most recently drawn screen visible, illusory movement
-            pygame.display.flip()
+    def _check_events(self):
+        """Listen for key presses and mouse events"""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+    def _update_screen(self):
+        """Refactor to re-home the code for updating the screen"""
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()  # draw the ship on the background
+
+        # make the most recently drawn screen visible, illusory movement
+        pygame.display.flip()
 
 
 if __name__ == '__main__':
