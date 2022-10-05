@@ -30,7 +30,7 @@ class AlienInvasion:
             self._check_events()  # helper method (event loop)
 
             # redraw the screen during each pass through the loop
-            self._update_screen()  # helper method refactor part 2
+            self._update_screen()  # helper method run_game refactor part 2
 
     def _check_events(self):
         """Listen for key presses and mouse events"""
