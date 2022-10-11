@@ -38,21 +38,27 @@ class AlienInvasion:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
-                    # move the ship to the right
+                    # move the ship by reassigning the flag to True
                     self.ship.moving_right = True
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = True
+
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
-                    # set moving_right flag to False when key is released
+                    # reset moving_right/left flag to False on keyrelease
                     self.ship.moving_right = False
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = False
 
     def _update_screen(self):
         """Refactor to re-home the code for updating the screen"""
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()  # draw the ship on the background
 
-        # make the most recently drawn screen visible, illusory movement
+        # make the most recently drawn screen visible -- illusory movement
         pygame.display.flip()
 
 
