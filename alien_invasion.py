@@ -28,6 +28,7 @@ class AlienInvasion:
         while True:
             # listen for key and mouse events (event loop)
             self._check_events()  # helper method (event loop)
+            self.ship.update() # now the ships update() should be called
 
             # redraw the screen during each pass through the loop
             self._update_screen()  # helper method run_game refactor part 2
