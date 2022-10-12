@@ -9,5 +9,6 @@ class Settings:
         self.bg_color = (230, 230, 230)
 
         # ship settings
-        self.ship_speed = 1.5  # sets how far the ship moves each passthrough
+        self.ship_speed = 1.5
+        # now the ship moves faster in loop iteration from 1px -> 1.5px
 
