@@ -35,23 +35,32 @@ class AlienInvasion:
 
     def _check_events(self):
         """Listen for key presses and mouse events"""
+
+        # refactor _check_events() into 2 methods: for keydown and keyup events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
 
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
-                    # move the ship by reassigning the flag to True
-                    self.ship.moving_right = True
-                elif event.key == pygame.K_LEFT:
-                    self.ship.moving_left = True
-
+                self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_RIGHT:
-                    # reset moving_right/left flag to False on keyrelease
-                    self.ship.moving_right = False
-                elif event.key == pygame.K_LEFT:
-                    self.ship.moving_left = False
+                self._check_keyup_events(event)
+
+    def _check_keydown_events(self, event):
+        """Respond to key presses. -- refactor of _check_events()"""
+        if event.key == pygame.K_RIGHT:
+            # move the ship by reassigning the flag to True
+            self.ship.moving_right = True
+        elif event.key == pygame.K_LEFT:
+            self.ship.moving_left = True
+
+    def _check_keyup_events(self, event):
+        """Respond to key releases. -- refactor of _check_events()"""
+        if event.key == pygame.K_RIGHT:
+            # reset moving_right/left flag to False on keyrelease
+            self.ship.moving_right = False
+        elif event.key == pygame.K_LEFT:
+            self.ship.moving_left = False
 
     def _update_screen(self):
         """Refactor to re-home the code for updating the screen"""
