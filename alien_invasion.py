@@ -13,10 +13,14 @@ class AlienInvasion:
         pygame.init()
         self.settings = Settings()
 
-        self.screen = pygame.display.set_mode(
-            (self.settings.screen_width,
-             self.settings.screen_height))  # surface
-        pygame.display.set_caption("Alien Invasion")
+        # self.screen = pygame.display.set_mode(
+        #     (self.settings.screen_width,
+        #      self.settings.screen_height))  # assigning surface to screen
+        # pygame.display.set_caption("Alien Invasion")
+        # refactor to use fullscreen mode:
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.settings.screen_width = self.screen.get_rect().width
+        self.settings.screen_height = self.screen.get_rect().height
 
         self.ship = Ship(self)
 
@@ -30,7 +34,7 @@ class AlienInvasion:
             self._check_events()  # helper method (event loop)
             self.ship.update() # now the ships update() should be called
 
-            # redraw the screen during each pass through the loop
+            # redraw the screen during each pass through the loop:
             self._update_screen()  # helper method run_game refactor part 2
 
     def _check_events(self):
@@ -53,6 +57,9 @@ class AlienInvasion:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
+        elif event.key == pygame.K_q:
+            sys.exit()
+    #         ^keyboard shortcut to close the game if pressed q
 
     def _check_keyup_events(self, event):
         """Respond to key releases. -- refactor of _check_events()"""
