@@ -12,3 +12,8 @@ class Settings:
         self.ship_speed = 1.5
         # now the ship moves faster in loop iteration from 1px -> 1.5px
 
+        # bullet settings
+        self.bullet_speed = 1.0
+        self.bullet_width = 3
+        self.bull_width = 15
+        self.bull_color = (60, 60, 60)
