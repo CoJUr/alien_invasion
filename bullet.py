@@ -23,7 +23,7 @@ class Bullet(Sprite):
         self.y = float(self.rect.y)
 
     def update(self):
-        """Function for moving the bullet up the screen (decreasing y value) when fired"""
+        """Moving the bullet up the screen (decreasing y value) when fired"""
         # update decimal position of bullet
         self.y -= self.settings.bullet_speed
         # update rect position:

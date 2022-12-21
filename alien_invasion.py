@@ -28,8 +28,9 @@ class AlienInvasion:
         # set the background color
         self.bg_color = (230, 230, 230)
 
-    #     create a group to store live bullets
+        #     create a group to store live bullets
         self.bullets = pygame.sprite.Group()
+
     #     update pos of bullets on each pass thru our while True loop
 
     def run_game(self):
@@ -65,7 +66,7 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_q:
             sys.exit()
-    #         ^keyboard shortcut to close the game if pressed q
+        #         ^keyboard shortcut to close the game if pressed q
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()  # firing bullets on spacebar down event
 
@@ -79,14 +80,16 @@ class AlienInvasion:
 
     def _fire_bullet(self):
         """Create a new bullet and add it to bullets group"""
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
+        new_bullet = Bullet(self)  # creating new instance of a bullet
+        self.bullets.add(new_bullet)  # add() = append() analog 4 Pygame groups
 
     def _update_screen(self):
-        """Refactor to re-home the code for updating the screen"""
+        """Update imgs on screen, and flip to the new screen.
+        Refactor to re-home the code for updating the screen"""
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()  # drawing the ship on the background
         for bullet in self.bullets.sprites():
+            # draw each bullet onto the screen
             bullet.draw_bullet()
 
         # make the most recently drawn screen visible -- illusory movement
