@@ -41,6 +41,13 @@ class AlienInvasion:
             self.ship.update()  # now the ships update() should be called
             self.bullets.update()  # updating each bullet's sprite position
 
+            # get rid of bullets that reach top of screen  (rect bottom = 0)
+            for bullet in self.bullets.copy():
+                # copy() method to avoid modifying the list while looping
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
+            print(len(self.bullets))  # verifies bullets are being removed
+
             # redraw the screen during each pass through the loop:
             self._update_screen()  # helper method run_game refactor part 2
 
