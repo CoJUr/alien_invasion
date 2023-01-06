@@ -87,8 +87,10 @@ class AlienInvasion:
 
     def _fire_bullet(self):
         """Create a new bullet and add it to bullets group"""
-        new_bullet = Bullet(self)  # creating new instance of a bullet
-        self.bullets.add(new_bullet)  # add() = append() analog 4 Pygame groups
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self)  # creating new instance of a bullet
+            # add() = append() analog 4 Pygame groups
+            self.bullets.add(new_bullet)
 
     def _update_screen(self):
         """Update imgs on screen, and flip to the new screen.
